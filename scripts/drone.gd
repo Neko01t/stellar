@@ -3,12 +3,18 @@ extends CharacterBody2D
 @export var speed: float = 150.0           
 @export var rotation_speed: float = 3.0  
 @onready var uilay: Node2D = $Camera2D/uilay
+@onready var camera: Camera2D = $Camera2D
+
+
 var score:int = 0
 func _ready() -> void:
-	print("Drone looking shit is ready")
+	uilay.get_child(0).position = Vector2(-180,-100)
 # state 
 var is_landed: bool = false
 var can_move: bool = true
+
+
+
 func _physics_process(delta: float) -> void:
 	var move_dir := Vector2.ZERO
 	if can_move:
@@ -35,8 +41,12 @@ func _physics_process(delta: float) -> void:
 		print(is_landed,can_move)
 	if is_landed:
 		drone_ani.play("landed")
+		camera.zoom = camera.zoom.lerp(Vector2(2,2),5*delta)
+		uilay.get_child(0).position = uilay.get_child(0).position.lerp(Vector2(-280,-160),5*delta)
 		drone_ani.scale = drone_ani.scale.lerp(Vector2(0.9, 0.9), 5 * delta)
 	else:
+		uilay.get_child(0).position = uilay.get_child(0).position.lerp(Vector2(-180,-100),5*delta)
+		camera.zoom = camera.zoom.lerp(Vector2(3,3),5*delta)
 		drone_ani.scale = drone_ani.scale.lerp(Vector2(1, 1), 5 * delta)
 
 	if move_dir != Vector2.ZERO:

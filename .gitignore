@@ -1,3 +1,45 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Godot-specific
+.import/
+export.cfg
+export_presets.cfg
+
+# Mono (C#) specific
+.mono/
+data_*/
+mono_crash.*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Editor/IDE files
+*.swp
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# VSCode
+.vscode/
+.history/
+
+# JetBrains Rider / IntelliJ
+.idea/
+
+# Build outputs
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+*.pdb
+
+# Logs
+*.log
