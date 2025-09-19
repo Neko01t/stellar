@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var rotation_speed: float = 3.0  
 
 var score: int = 0
-
+signal buildmode()
 # state
 var is_landed: bool = false
 var can_move: bool = true
@@ -86,6 +86,7 @@ func _handle_landing(delta: float) -> void:
 		is_landed = !is_landed
 		can_move = !can_move
 		print("Landed:", is_landed, " CanMove:", can_move)
+		emit_signal("buildmode")
 
 	if is_landed:
 		_play_animation("landed")
@@ -143,3 +144,4 @@ func _update_ui() -> void:
 func _play_animation(anim: String) -> void:
 	drone_ani.play(anim)
 	shadow.play(anim)
+	

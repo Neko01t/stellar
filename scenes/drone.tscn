@@ -102,8 +102,6 @@ animations = [{
 
 [node name="Drone" type="CharacterBody2D"]
 script = ExtResource("1_knnud")
-speed = null
-rotation_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
