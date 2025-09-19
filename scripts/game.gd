@@ -85,3 +85,6 @@ func _on_solar_pressed() -> void:
 func _on_drone_buildmode() -> void:
 	menu.visible = !is_menu
 	is_menu = !is_menu
+func _process(delta: float) -> void:
+	if Input.is_action_just_released("escto"):
+		get_tree().change_scene_to_file("res://scenes/control.tscn")
