@@ -13,7 +13,7 @@ Game that have drone and make your own village
 - devlope and incerease revinue
 ----
 ## Devloper
-** to my co-devloper **
+*to my co-devloper*
 - download godot
 - download / clone this repo
 - click on import the project on left side of screen
