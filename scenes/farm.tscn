@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://diqkke0pxr1bh"]
+
+[ext_resource type="PackedScene" uid="uid://cgislupolquig" path="res://scenes/drone.tscn" id="1_o03py"]
+
+[sub_resource type="TileSet" id="TileSet_o03py"]
+
+[node name="Farm" type="Node2D"]
+
+[node name="Drone" parent="." instance=ExtResource("1_o03py")]
+
+[node name="Camera2D" type="Camera2D" parent="Drone"]
+zoom = Vector2(3, 3)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_o03py")

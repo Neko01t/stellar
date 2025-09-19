@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgislupolquig"]
+
+[ext_resource type="Script" uid="uid://18rqwaxk05km" path="res://scripts/drone.gd" id="1_knnud"]
+[ext_resource type="Texture2D" uid="uid://d17bllso7c2gg" path="res://icon.svg" id="2_1r4ts"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umx5g"]
+
+[node name="Drone" type="CharacterBody2D"]
+script = ExtResource("1_knnud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.7683716e-07, -0.4999981)
+scale = Vector2(0.15625, 0.14843751)
+texture = ExtResource("2_1r4ts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_umx5g")
