@@ -3,11 +3,13 @@ Game that have drone and make your own village
 ## Controls 
 - WASD to move forward , backward , left , and right
 - shift to land and fly again
-  
-## function [ Not devloped -_-]
+
+## fucntion [completed]
 - find area
 - discover place to setlle
 - build ur own town
+
+## function [ Not devloped -_-]
 - get score on based of effficient resource use
 - face disasters and gain more score
 - devlope and incerease revinue
