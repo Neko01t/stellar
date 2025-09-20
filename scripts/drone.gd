@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var uilay: Node2D = $Camera2D/uilay
 @onready var camera: Camera2D = $Camera2D
 @onready var fog_map = get_node("../Tiles/Fog")
-
 @export var speed: float = 150.0
 @export var rotation_speed: float = 3.0  
 

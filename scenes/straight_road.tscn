@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b16lig3do8u2s"]
+
+[ext_resource type="Texture2D" uid="uid://cn4m4csagveyn" path="res://assets/props/roads/roads2W.png" id="1_ligog"]
+
+[node name="StraightRoad" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, -2.3841858e-07)
+scale = Vector2(0.24999999, 0.234375)
+texture = ExtResource("1_ligog")
+hframes = 8
+vframes = 3
+frame = 3

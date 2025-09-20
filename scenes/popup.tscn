@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://q6pd5thqrag6"]
+
+[ext_resource type="Script" uid="uid://bhpcqb1qjtj7v" path="res://scripts/popup.gd" id="1_4ebxx"]
+[ext_resource type="Texture2D" uid="uid://cn4m4csagveyn" path="res://assets/props/roads/roads2W.png" id="2_cpc1a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpc1a"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ebxx")
+sprite_sheet = ExtResource("2_cpc1a")
+
+[node name="Window" type="Window" parent="."]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(500, 400)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Window"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cpc1a")
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
