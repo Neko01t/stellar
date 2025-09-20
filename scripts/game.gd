@@ -1,9 +1,13 @@
 extends Node2D
 var SCORE : int=0
+signal building_placed(buildings_data, current_budget)
+
 @onready var fog_map: TileMapLayer = $Tiles/Fog
 @onready var ground_map: TileMapLayer = $Tiles/Ground
 @onready var ui_label: Label = $Meslasyer/Message
 @onready var menu: CanvasLayer = $Menu
+var buildings_data := []
+
 var budget: int = 100000 
 @onready var budget_label: Label = $Menu/VBoxContainer/Label
 var click_pos :Vector2 
@@ -25,9 +29,10 @@ var roads:={
 	"t_intersection": preload("res://scenes/t_intersection.tscn"),
 	"cross": preload("res://scenes/cross_road.tscn")
 }
-
+var farmland : PackedScene = preload("res://scenes/farmland.tscn")
+var well : PackedScene = preload("res://scenes/well.tscn")
+var hospital : PackedScene = preload("res://scenes/hospital.tscn")
 @export var building_scene: PackedScene
-@export var road_scene: PackedScene
 @export var solar_scene: PackedScene
 @onready var drone = $Drone
 func _ready() -> void:
@@ -50,9 +55,6 @@ func place_building(tile_pos: Vector2i,type: String = "house") -> void:
 	var building
 	if type == "house":
 		building = building_scene.instantiate()
-	elif type == "road":
-		print(cost)
-		building = road_scene.instantiate()
 	elif type == "solar":
 		building = solar_scene.instantiate()
 	elif type == "straight":
@@ -63,10 +65,24 @@ func place_building(tile_pos: Vector2i,type: String = "house") -> void:
 		building = roads["curve"].instantiate()
 	elif type == "cross":
 		building = roads["cross"].instantiate()
+	elif type == "farmland":
+		building = farmland.instantiate()
+	elif type == "hospital":
+		building = hospital.instantiate()
+	elif type == "well":
+		building = well.instantiate()
 	else:
 		building = building_scene.instantiate()	
 	budget -= cost
 	drone.score += 10
+	# frek important data 
+	var building_info = {
+		"name": building.name,
+		"type": type,
+		"position": building.position,
+		"cost": cost
+	}
+	buildings_data.append(building_info)
 
 	if budget < cost:
 		show_message("Not enough budget!")
@@ -76,6 +92,8 @@ func place_building(tile_pos: Vector2i,type: String = "house") -> void:
 	building.z_index = 2
 	drone.score += 10
 	show_message("Building placed! +10 points")
+	emit_signal("building_placed", buildings_data, budget)
+
 
 
 
@@ -123,8 +141,24 @@ func _on_drone_buildmode() -> void:
 	is_menu = !is_menu
 
 func _process(delta: float) -> void:
+	var n = ground_map.get_child_count()
 	if(Input.is_action_just_released("back")):
-		var n = ground_map.get_child_count()
 		ground_map.get_child(n-1).queue_free()
+	if(Input.is_action_just_released("rotate_obj")):
+		ground_map.get_child(n-1).rotation += deg_to_rad(90)
 	if Input.is_action_just_released("escto"):
 		get_tree().change_scene_to_file("res://scenes/control.tscn")
+
+
+func _on_farmland_pressed() -> void:
+	selected_building_type = "farmland"
+	show_message("Selected: farmland")
+	
+
+func _on_hospital_pressed() -> void:
+	selected_building_type = "hospital"
+	show_message("Selected: hospital")
+
+func _on_well_pressed() -> void:
+	selected_building_type = "well"
+	show_message("Selected: well")

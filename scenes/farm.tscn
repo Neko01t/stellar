@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://pcmqphvoykx6" path="res://scripts/game.gd" id="1_kjpqf"]
 [ext_resource type="PackedScene" uid="uid://cgislupolquig" path="res://scenes/drone.tscn" id="1_o03py"]
 [ext_resource type="PackedScene" uid="uid://c5c4kvwf5s0iv" path="res://scenes/building.tscn" id="2_5q3ck"]
-[ext_resource type="PackedScene" uid="uid://wndej3cwool4" path="res://scenes/road.tscn" id="3_t855c"]
 [ext_resource type="Texture2D" uid="uid://clfqwyyhwchoa" path="res://assets/map-nyb-assets/XMEL-tile00.jpg" id="4_5q3ck"]
 [ext_resource type="Texture2D" uid="uid://bca8iqpppvkp4" path="res://assets/fog/fog.png" id="4_7byxm"]
 [ext_resource type="PackedScene" uid="uid://bqnva8n50x1xo" path="res://scenes/solar.tscn" id="4_lakm8"]
 [ext_resource type="Texture2D" uid="uid://c3nc8pvliiril" path="res://assets/map-nyb-assets/XMEL-tile10.jpg" id="5_6buwl"]
 [ext_resource type="FontFile" uid="uid://cntnoggprc1sv" path="res://assets/fonts/PixelifySans-VariableFont_wght.ttf" id="7_6buwl"]
+[ext_resource type="PackedScene" uid="uid://cts31ljnfsng6" path="res://scenes/score_assemenet.tscn" id="9_t855c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t855c"]
 texture = ExtResource("4_5q3ck")
@@ -8225,7 +8225,6 @@ sources/0 = SubResource("TileSetAtlasSource_7byxm")
 [node name="Farm" type="Node2D"]
 script = ExtResource("1_kjpqf")
 building_scene = ExtResource("2_5q3ck")
-road_scene = ExtResource("3_t855c")
 solar_scene = ExtResource("4_lakm8")
 
 [node name="Tiles" type="Node" parent="."]
@@ -8298,8 +8297,26 @@ text = "Road"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_6buwl")
 theme_override_font_sizes/font_size = 17
-text = "Solar
+text = "Solar"
+
+[node name="farmland" type="Button" parent="Menu/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_6buwl")
+theme_override_font_sizes/font_size = 17
+text = "Farmland
 "
+
+[node name="hospital" type="Button" parent="Menu/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_6buwl")
+theme_override_font_sizes/font_size = 17
+text = "Hospital"
+
+[node name="well" type="Button" parent="Menu/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_6buwl")
+theme_override_font_sizes/font_size = 17
+text = "Well"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 anchors_preset = 5
@@ -8314,7 +8331,16 @@ grow_horizontal = 2
 layout_mode = 2
 text = "Budget : 100000$"
 
+[node name="score_assemenet" parent="." instance=ExtResource("9_t855c")]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="building_placed" from="." to="score_assemenet" method="_on_farm_building_placed"]
 [connection signal="buildmode" from="Drone" to="." method="_on_drone_buildmode"]
 [connection signal="pressed" from="Menu/HBoxContainer/House" to="." method="_on_house_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/Road" to="." method="_on_road_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/solar" to="." method="_on_solar_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/farmland" to="." method="_on_farmland_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/hospital" to="." method="_on_hospital_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/well" to="." method="_on_well_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="score_assemenet" method="_on_http_request_request_completed"]

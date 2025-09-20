@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5c4kvwf5s0iv"]
+[gd_scene load_steps=3 format=3 uid="uid://ck0gk4pjjvngj"]
 
-[ext_resource type="Texture2D" uid="uid://c5rxpmgh8qcy3" path="res://assets/props/roads/stuff3.png" id="1_n8bkc"]
-[ext_resource type="Script" uid="uid://eofa122n4x70" path="res://scripts/building.gd" id="1_uvy8r"]
+[ext_resource type="Texture2D" uid="uid://bntha34u1sg8n" path="res://assets/props/roads/atuff4.png" id="1_4tb3g"]
+[ext_resource type="Script" uid="uid://eofa122n4x70" path="res://scripts/building.gd" id="1_rgtmi"]
 
-[node name="Building" type="Node2D"]
-script = ExtResource("1_uvy8r")
+[node name="Well" type="Node2D"]
+script = ExtResource("1_rgtmi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5, -2)
 scale = Vector2(0.111499995, 0.0995)
-texture = ExtResource("1_n8bkc")
+texture = ExtResource("1_4tb3g")
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.36862746)
@@ -19,7 +19,7 @@ offset_top = -33.0
 offset_right = 15.0
 offset_bottom = -18.0
 theme_override_font_sizes/font_size = 9
-text = "House"
+text = "Well"
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]

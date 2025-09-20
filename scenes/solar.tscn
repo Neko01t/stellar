@@ -1,19 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqnva8n50x1xo"]
 
-[ext_resource type="Texture2D" uid="uid://d17bllso7c2gg" path="res://icon.svg" id="1_hsibg"]
+[ext_resource type="Texture2D" uid="uid://cmwijjqub6b3o" path="res://assets/props/roads/ewmo.png" id="1_hsibg"]
 
 [node name="Solar" type="Node2D"]
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-2.000001, -3)
-scale = Vector2(0.24999999, 0.234375)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.4210855e-14)
+scale = Vector2(0.027749998, 0.0234375)
 texture = ExtResource("1_hsibg")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -17.0
-offset_top = -33.0
-offset_right = 12.0
-offset_bottom = -18.0
-theme_override_font_sizes/font_size = 8
-text = "solar"
-horizontal_alignment = 1

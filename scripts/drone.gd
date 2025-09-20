@@ -93,16 +93,16 @@ func _handle_landing(delta: float) -> void:
 		uilay.get_child(0).position = uilay.get_child(0).position.lerp(Vector2(-280, -160), 5 * delta)
 
 		# scale drone + shadow slightly smaller
-		drone_ani.scale = drone_ani.scale.lerp(Vector2(0.9, 0.9), 5 * delta)
-		shadow.scale = shadow.scale.lerp(Vector2(0.85, 0.85), 5 * delta)
+		drone_ani.scale = drone_ani.scale.lerp(Vector2(0.1, 0.1), 5 * delta)
+		shadow.scale = shadow.scale.lerp(Vector2(0.05, 0.05), 5 * delta)
 		shadow.position = shadow.position.lerp(Vector2(-8, 0), 5 * delta)
 	else:
 		camera.zoom = camera.zoom.lerp(Vector2(3, 3), 5 * delta)
 		uilay.get_child(0).position = uilay.get_child(0).position.lerp(Vector2(-180, -100), 5 * delta)
 
 		# default flying scale
-		drone_ani.scale = drone_ani.scale.lerp(Vector2(1, 1), 5 * delta)
-		shadow.scale = shadow.scale.lerp(Vector2(0.7, 0.7), 5 * delta)
+		drone_ani.scale = drone_ani.scale.lerp(Vector2(0.2, 0.2), 5 * delta)
+		shadow.scale = shadow.scale.lerp(Vector2(0.1, 0.1), 5 * delta)
 		shadow.position = shadow.position.lerp(Vector2(-19, 0), 5 * delta)
 
 

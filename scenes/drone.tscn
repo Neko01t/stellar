@@ -1,63 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgislupolquig"]
+[gd_scene load_steps=9 format=3 uid="uid://cgislupolquig"]
 
 [ext_resource type="Script" uid="uid://18rqwaxk05km" path="res://scripts/drone.gd" id="1_knnud"]
 [ext_resource type="Texture2D" uid="uid://d28nn0f6ngr2i" path="res://assets/drone.png" id="2_knnud"]
-[ext_resource type="Texture2D" uid="uid://k381dtrmjq7o" path="res://assets/Pixel SHMUP Free 1.3/Pixel SHMUP Free/spritesheet_player.png" id="3_1r4ts"]
-[ext_resource type="Texture2D" uid="uid://o6erewkgw5lf" path="res://assets/Pixel SHMUP Free 1.3/Pixel SHMUP Free/main_ship-1.png" id="4_umx5g"]
+[ext_resource type="Texture2D" uid="uid://yv18mm8s2ojf" path="res://assets/props/roads/drone.png" id="3_k1p8w"]
+[ext_resource type="Texture2D" uid="uid://coy67khdpw3qr" path="res://assets/props/roads/dronw.png" id="4_f6asb"]
+[ext_resource type="Texture2D" uid="uid://br4u1niwr202j" path="res://assets/props/roads/dronelieft.png" id="5_f6asb"]
+[ext_resource type="Texture2D" uid="uid://blyin078qt661" path="res://assets/props/roads/dronerigth.png" id="6_nxcwj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umx5g"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_umx5g"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(0, 0, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1p8w"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(48, 0, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6asb"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(96, 0, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5v1da"]
-atlas = ExtResource("4_umx5g")
-region = Rect2(0, 0, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1r4ts"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(0, 232, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nxcwj"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(48, 232, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4gt0"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(96, 232, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_746d6"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(0, 116, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4p7cs"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(48, 116, 48, 58)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hxsdg"]
-atlas = ExtResource("3_1r4ts")
-region = Rect2(96, 116, 48, 58)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nxcwj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_umx5g")
+"texture": ExtResource("3_k1p8w")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k1p8w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f6asb")
+"texture": ExtResource("4_f6asb")
 }],
 "loop": true,
 "name": &"default",
@@ -65,7 +24,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5v1da")
+"texture": ExtResource("3_k1p8w")
 }],
 "loop": true,
 "name": &"landed",
@@ -73,13 +32,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1r4ts")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nxcwj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t4gt0")
+"texture": ExtResource("5_f6asb")
 }],
 "loop": true,
 "name": &"left",
@@ -87,13 +40,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_746d6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4p7cs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hxsdg")
+"texture": ExtResource("6_nxcwj")
 }],
 "loop": true,
 "name": &"right",
@@ -128,8 +75,9 @@ theme_override_font_sizes/font_size = 8
 text = "Score: "
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_nxcwj")
-animation = &"right"
+animation = &"landed"
 autoplay = "default"
 
 [node name="shadow" type="AnimatedSprite2D" parent="."]
@@ -137,7 +85,7 @@ modulate = Color(0, 0, 0, 0.54509807)
 self_modulate = Color(0.10747976, 0.10747973, 0.10747973, 1)
 show_behind_parent = true
 position = Vector2(-11, 0)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_nxcwj")
-animation = &"right"
+animation = &"left"
 autoplay = "default"
