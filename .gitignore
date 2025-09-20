@@ -40,6 +40,6 @@ desktop.ini
 *.dylib
 *.bin
 *.pdb
-
+.env
 # Logs
 *.log

@@ -47,51 +47,65 @@ func _unhandled_input(event: InputEvent) -> void:
 			if fog_map.get_cell_source_id(tile_pos) != -1:
 				show_message("Survey the area first!")
 				return
-			place_building(tile_pos,selected_building_type)
+			place_building(tile_pos,selected_building_type,)
+func place_building(tile_pos: Vector2i, btype: String = "house") -> void:
+	var cost = building_costs.get(btype, 0)
 
-func place_building(tile_pos: Vector2i,type: String = "house") -> void:
-	var cost = building_costs.get(type, 0)
-	budget_label.text  = str(budget)+"$"
-	var building
-	if type == "house":
-		building = building_scene.instantiate()
-	elif type == "solar":
-		building = solar_scene.instantiate()
-	elif type == "straight":
-		building = roads["straight"].instantiate()
-	elif type == "t_intersection":
-		building = roads["t_intersection"].instantiate()
-	elif type == "curve":
-		building = roads["curve"].instantiate()
-	elif type == "cross":
-		building = roads["cross"].instantiate()
-	elif type == "farmland":
-		building = farmland.instantiate()
-	elif type == "hospital":
-		building = hospital.instantiate()
-	elif type == "well":
-		building = well.instantiate()
-	else:
-		building = building_scene.instantiate()	
+	# ✅ Check budget first
+	if budget < cost:
+		show_message("Not enough budget!")
+		return
+
+	# Instantiate based on type
+	var building: Node2D
+	match btype:
+		"house":
+			building = building_scene.instantiate()
+		"solar":
+			building = solar_scene.instantiate()
+		"straight":
+			building = roads["straight"].instantiate()
+		"t_intersection":
+			building = roads["t_intersection"].instantiate()
+		"curve":
+			building = roads["curve"].instantiate()
+		"cross":
+			building = roads["cross"].instantiate()
+		"farmland":
+			building = farmland.instantiate()
+		"hospital":
+			building = hospital.instantiate()
+		"well":
+			building = well.instantiate()
+		_:
+			building = building_scene.instantiate()
+
+	# Deduct budget
 	budget -= cost
-	drone.score += 10
-	# frek important data 
+	budget_label.text = str(budget) + "$"
+
+	# Place building
+	ground_map.add_child(building)  
+	building.position = ground_map.map_to_local(tile_pos)
+	building.z_index = 2
+
+	# Name with counter
+	building.name = btype.capitalize() + "_" + str(buildings_data.size() + 1)
+
+	# Save data
 	var building_info = {
 		"name": building.name,
-		"type": type,
+		"type": btype,
 		"position": building.position,
 		"cost": cost
 	}
 	buildings_data.append(building_info)
 
-	if budget < cost:
-		show_message("Not enough budget!")
-		return
-	ground_map.add_child(building)  
-	building.position = ground_map.map_to_local(tile_pos)
-	building.z_index = 2
-	drone.score += 10
+	# Score once
+	drone.THEscore += 10
 	show_message("Building placed! +10 points")
+
+	# Emit signal
 	emit_signal("building_placed", buildings_data, budget)
 
 
@@ -162,3 +176,8 @@ func _on_hospital_pressed() -> void:
 func _on_well_pressed() -> void:
 	selected_building_type = "well"
 	show_message("Selected: well")
+
+
+func _on_redirect_pressed() -> void:
+	var url = "http://127.0.0.1:7860"  # Replace with your URL
+	OS.shell_open(url)

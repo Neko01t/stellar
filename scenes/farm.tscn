@@ -8331,6 +8331,13 @@ grow_horizontal = 2
 layout_mode = 2
 text = "Budget : 100000$"
 
+[node name="redirect" type="Button" parent="Menu"]
+offset_left = 1023.0
+offset_top = 10.0
+offset_right = 1135.0
+offset_bottom = 41.0
+text = "Check Layout"
+
 [node name="score_assemenet" parent="." instance=ExtResource("9_t855c")]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
@@ -8343,4 +8350,6 @@ text = "Budget : 100000$"
 [connection signal="pressed" from="Menu/HBoxContainer/farmland" to="." method="_on_farmland_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/hospital" to="." method="_on_hospital_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/well" to="." method="_on_well_pressed"]
+[connection signal="pressed" from="Menu/redirect" to="." method="_on_redirect_pressed"]
+[connection signal="score_received" from="score_assemenet" to="Drone" method="_on_score_assemenet_score_received"]
 [connection signal="request_completed" from="HTTPRequest" to="score_assemenet" method="_on_http_request_request_completed"]

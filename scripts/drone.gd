@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var speed: float = 150.0
 @export var rotation_speed: float = 3.0  
 
-var score: int = 0
+var THEscore: int = 0
 signal buildmode()
 # state
 var is_landed: bool = false
@@ -31,8 +31,7 @@ func _physics_process(delta: float) -> void:
 	_update_ui()
 
 	# DEBUG: add points
-	if Input.is_action_just_pressed("Debug_add_points"):
-		_add_score(1)
+	_score_display()
 
 
 # ----------------------
@@ -127,9 +126,8 @@ func _clear_fog(radius: int = 3) -> void:
 # ----------------------
 # UI / Score
 # ----------------------
-func _add_score(points: int) -> void:
-	score += points
-	uilay.get_child(0).text = "Score %d" % score
+func _score_display() -> void:
+	uilay.get_child(0).text = "Score %d" % THEscore
 
 
 func _update_ui() -> void:
@@ -144,3 +142,8 @@ func _play_animation(anim: String) -> void:
 	drone_ani.play(anim)
 	shadow.play(anim)
 	
+
+
+func _on_score_assemenet_score_received(score: int, details: Dictionary) -> void:
+	THEscore = score
+	print(score)
