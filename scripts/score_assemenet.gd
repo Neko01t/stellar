@@ -2,7 +2,7 @@ extends Node2D
 @onready var drone: CharacterBody2D = $"../Drone"
 @onready var http_request: HTTPRequest = $"../HTTPRequest"
 const FALLBACK_API = "APIkey"
-var GEMINI_API_KEY = "AIzaSyCKTgkY2Q2jzybFP-uHq2cXbl9QBHGC0cs"
+var GEMINI_API_KEY = "apiKey2"
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key="
 var Buildings_data := []
 
