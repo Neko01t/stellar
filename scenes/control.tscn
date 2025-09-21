@@ -51,6 +51,11 @@ layout_mode = 2
 size_flags_horizontal = 5
 text = "Exit"
 
+[node name="CheckLayput" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Perfect layout"
+
 [connection signal="pressed" from="HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="HBoxContainer/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="HBoxContainer/CheckLayput" to="." method="_on_check_layput_pressed"]

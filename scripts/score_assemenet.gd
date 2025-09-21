@@ -48,10 +48,10 @@ Reply ONLY in JSON with this format:
 {
   "score": <number>,
   "details": {
-    "Base": <number>,
-    "Proximity": <number>,
-    "Penalties": <number>,
-    "Bonus": <number>
+	"Base": <number>,
+	"Proximity": <number>,
+	"Penalties": <number>,
+	"Bonus": <number>
   }
 }
 """
