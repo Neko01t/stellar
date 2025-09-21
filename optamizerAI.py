@@ -8,7 +8,7 @@ import numpy as np
 # --- IMPORTANT ---
 # Paste your Google Gemini API key here.
 # You can get one from Google AI Studio: https://aistudio.google.com/app/apikey
-API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyC9_EnOhaP1L0vuL9Xb6a67yASSIKB0jww")
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 # --- Example Data ---
 DEFAULT_BUILDINGS_A_JSON = """
